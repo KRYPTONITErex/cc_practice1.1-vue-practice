@@ -4,8 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+
+        .favCol{
+            background-color: rgb(153, 244, 236);
+        }
+
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f9f9f9;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        ul:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .favCol {
+            background-color: rgb(153, 244, 236) !important;
+            border: 2px solid rgb(0, 187, 187);
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .box {
+            margin: 10px auto;
+            padding: 20px;
+            width: 150px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .box:hover {
+            background-color: #e0f7fa;
+            color: #007BFF;
+        }
+
+
+    </style>
 </head>
 <body>
-    <h1>mySelf Practice</h1>
+    <h1>mySelf Practice - Phone Types</h1>
+
+    <div id="app">
+
+        <div v-for="phone in filteredPhones" >
+
+            <div v-if="showInfo">
+
+                <ul :class={favCol:phone.isFav} @click="clickFav(phone)">
+                    <img :src="phone.img" alt="" width="250" height="150">
+                    <li><h2>BRAND : {{ phone.brand }} </h2></li>
+                    <li><h3>MODEL : {{ phone.model }}</h3></li>
+                    <li><h4>SECURITY : {{ phone.security }}</h4></li>
+                </ul><hr>
+
+            </div>
+
+            
+        </div>
+
+        <button @click="showInfo=!showInfo">
+            <span>{{showInfo? "HIDE INFO" : "SHOW INFO"}}</span>
+            <!-- <span v-if="!showInfo">Show Details</span>
+            <span v-else>Hide Details</span> -->
+        </button>
+
+        <a :href="link">GO TO GOOGLE</a>
+
+        <div class="box" @mouseover="mouseover($event,'IPHONE')">Mouse Over</div>
+        <div class="box" @mouseleave="mouseleave($event,'MI')">Mouse Leave</div>
+        <div class="box" @dblclick="dblclick($event, 'OTHERS')">Double Click</div>
+        
+
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
